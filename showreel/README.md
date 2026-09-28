@@ -38,6 +38,9 @@ PAGE=long.html QUERY=cut=30 AUDIO=audio30.wav OUT=showreel_30s.mp4 CRF=18 node r
 `audio_styles.py` builds softer takes on the same timeline and cues:
 `ambient` (glass bells and pads), `piano` (generated piano melody),
 `lofi` (Rhodes, dusty drums, vinyl crackle) and `pulse` (marimba patterns).
+A calmer family keeps a soft heartbeat on every beat and no drums:
+`calme` (sparse marimba), `nappe` (warm drone), `horloge` (tick-tock) and
+`respiration` (slow two-note marimba ostinato).
 The encoded tracks are in `audio/`; swap one onto the video without re-rendering:
 
 ```sh

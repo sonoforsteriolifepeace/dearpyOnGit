@@ -211,7 +211,13 @@ STY = {
     'piano':   dict(lead=piano, verb=.35, pad=.05, bright=1000, air=0, master=-19),
     'lofi':    dict(lead=rhodes, verb=.25, pad=.0, bright=900, air=0, master=-18),
     'pulse':   dict(lead=marimba, verb=.3, pad=.05, bright=1600, air=.01, master=-18),
+    # calm family, built on the opening of `pulse`: marimba, soft heartbeat, no drums
+    'calme':       dict(lead=marimba, verb=.4, pad=.03, bright=900, air=0, master=-21, calm=True),
+    'nappe':       dict(lead=marimba, verb=.45, pad=.16, bright=700, air=.006, master=-21, calm=True),
+    'horloge':     dict(lead=marimba, verb=.35, pad=.04, bright=800, air=0, master=-21, calm=True),
+    'respiration': dict(lead=marimba, verb=.4, pad=.03, bright=900, air=0, master=-21, calm=True),
 }[STYLE]
+CALM = STY.get('calm', False)
 lead = STY['lead']
 
 # ---------------- bed ----------------
@@ -284,6 +290,23 @@ for bar in range(bars):
                 put(shaker(), tb + .25, .06, pan=.3)
             if e == 3 and bi in (1, 3):
                 put(brush(.2), tb, .08, verb=.3)
+        elif CALM:
+            grow = .8 + .3 * tb / D                        # slow crescendo towards the deadline
+            if tb >= 3:                                    # heartbeat on every beat, like the opening
+                put(boom(1.0), tb, (.13 if bi == 0 else .09) * grow)
+                put(woodtick(1200), tb, .02 * grow, verb=.3)
+            if e == 0:
+                continue
+            if STYLE == 'calme':
+                if bi == 0 or (bi == 2 and e >= 2):
+                    put(marimba(hz(ch[1 + (bar + bi // 2) % 3]), 1.2, .7), tb, .13 * grow, pan=(-.3 if bi else .3), verb=.5)
+            elif STYLE == 'horloge':
+                put(woodtick(1500 if bi % 2 else 1900), tb, (.045 + .012 * e) * grow, pan=(.25 if bi % 2 else -.25), verb=.2)
+                if bi == 0:
+                    put(marimba(hz(ch[1]), 1.2, .6), tb, .06 * grow, verb=.5)
+            elif STYLE == 'respiration':
+                for s, m in enumerate((ch[0] + 24, ch[0] + 31)):
+                    put(marimba(hz(m), .7, .6), tb + s * .25, (.06 + .015 * e) * grow, pan=(.3 if s else -.3), verb=.35)
 
 # ---------------- melody (piano style) ----------------
 if STYLE == 'piano':
@@ -314,6 +337,9 @@ for t, kind, arg in TL['cues']:
         if STYLE == 'lofi':
             put(lofikick(), t, .55 * g)
             put(filt(filt(noise(1.2), 5000, 'high'), 9000) * np.exp(-tt(1.2) * 3.5), t, .05 * g, verb=.4)
+        elif CALM:
+            put(boom(1.8), t, .13 * g)
+            put(marimba(hz(ch[0] + 24), 1.4), t, .1 * min(g, 1), verb=.5)
         elif STYLE == 'pulse':
             put(softkick(), t, .55 * g)
             for j, m in enumerate(ch[1:4]):
@@ -330,15 +356,15 @@ for t, kind, arg in TL['cues']:
     elif kind in ('blip', 'land', 'wordBlip', 'blipEnd'):
         i = arg if arg is not None else 0
         m = tone_at(t, i if kind != 'wordBlip' else int(arg) // 3, 72 if kind != 'blipEnd' else 84)
-        g = {'blip': .13, 'land': .15, 'wordBlip': .17, 'blipEnd': .12}[kind]
+        g = {'blip': .13, 'land': .15, 'wordBlip': .17, 'blipEnd': .12}[kind] * (.7 if CALM else 1)
         if kind == 'land' and STYLE in ('ambient', 'piano'):
             put(boom(1.2), t, .18)
         put(lead(hz(m), 2.0), t, g, pan=(.3 if int(i) % 2 else -.3), verb=STY['verb'] + .2)
     elif kind in ('tick', 'clockTick'):
         f = 1900 if (arg or 0) % 2 == 0 else 1500
-        put(woodtick(f), t, .05 if kind == 'tick' else .07, pan=(-.3 if (arg or 0) % 2 else .3))
+        put(woodtick(f), t, (.05 if kind == 'tick' else .07) * (.5 if CALM else 1), pan=(-.3 if (arg or 0) % 2 else .3))
     elif kind == 'heart':
-        put(boom(1.0), t, .3)
+        put(boom(1.0), t, .2 if CALM else .3)
         put(woodtick(1200), t, .04, verb=.3)
     elif kind == 'osc':
         steps = int(arg / .125)
@@ -347,7 +373,7 @@ for t, kind, arg in TL['cues']:
             put(lead(hz(min(m, 96)), 1.0), t + q * .125, .06 + .06 * q / max(1, steps), pan=np.sin(q) * .5, verb=STY['verb'])
     elif kind in SOFT_WHOOSH:
         d = max(.3, arg or .4)
-        put(swell(d, 1800 if STYLE != 'pulse' else 2600), t, .06, pan=rs.random() - .5, verb=.3)
+        put(swell(d, 1800 if STYLE != 'pulse' else 2600), t, .03 if CALM else .06, pan=rs.random() - .5, verb=.3)
     elif kind == 'riser':
         put(swell(arg, 2500), t, .07, verb=.3)
     elif kind == 'type':
