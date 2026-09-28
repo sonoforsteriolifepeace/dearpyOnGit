@@ -47,3 +47,14 @@ The encoded tracks are in `audio/`; swap one onto the video without re-rendering
 python3 audio_styles.py timeline60.json piano audio_piano.wav
 ffmpeg -i showreel_60s.mp4 -i audio_piano.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest showreel_60s_piano.mp4
 ```
+
+## Sound effects only (60 s)
+
+For a music bed added in editing, `audio_sfx.py` makes effect-only tracks, no melody,
+peak-normalised to -6 dBFS: `essentiel` (4 big moments), `transitions` (every scene
+change), `accents` (+ key visual events) and `interface` (+ ticks, typing, pops).
+Encoded tracks: `audio/sfx_60s_*.m4a`.
+
+```sh
+python3 audio_sfx.py timeline60.json transitions sfx_transitions.wav
+```
