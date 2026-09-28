@@ -32,3 +32,15 @@ PAGE=long.html QUERY=cut=30 AUDIO=audio30.wav OUT=showreel_30s.mp4 CRF=18 node r
 ```
 
 `node render.js stills 1.5 4 12.25` renders single frames to `stills/` for checking.
+
+## Alternative soundtracks (60 s)
+
+`audio_styles.py` builds softer takes on the same timeline and cues:
+`ambient` (glass bells and pads), `piano` (generated piano melody),
+`lofi` (Rhodes, dusty drums, vinyl crackle) and `pulse` (marimba patterns).
+The encoded tracks are in `audio/`; swap one onto the video without re-rendering:
+
+```sh
+python3 audio_styles.py timeline60.json piano audio_piano.wav
+ffmpeg -i showreel_60s.mp4 -i audio_piano.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest showreel_60s_piano.mp4
+```
