@@ -1,0 +1,27 @@
+{
+  "name": "bachtarzi-animation",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Animation Remotion : Cheikh Abderrahmane Bachtarzi, le couturier de la Mandhouma Rahmania",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Bachtarzi out/bachtarzi.mp4",
+    "still": "remotion still src/index.ts Bachtarzi"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.534",
+    "@remotion/media": "4.0.534",
+    "@remotion/paths": "4.0.534",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.534"
+  },
+  "devDependencies": {
+    "@fontsource/amiri": "5.3.0",
+    "@fontsource/aref-ruqaa": "5.3.0",
+    "@fontsource/eb-garamond": "5.2.7",
+    "@fontsource/inter": "5.3.0",
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}

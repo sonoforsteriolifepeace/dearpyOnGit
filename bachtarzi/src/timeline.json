@@ -1,0 +1,37 @@
+{
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "duration": 180,
+  "fade": 0.5,
+  "chapters": [
+    {"n": "I", "title": "Le maître et son premier élève", "start": 0, "end": 60},
+    {"n": "II", "title": "Écrire pour transmettre", "start": 60, "end": 120},
+    {"n": "III", "title": "Le tailleur et la mesure", "start": 120, "end": 180}
+  ],
+  "scenes": [
+    {"id": "title", "start": 0, "end": 7, "bg": "paper"},
+    {"id": "ch1", "start": 7, "end": 10.5, "bg": "night"},
+    {"id": "master", "start": 10.5, "end": 19, "bg": "paper"},
+    {"id": "journey", "start": 19, "end": 38, "bg": "paper"},
+    {"id": "tombs", "start": 38, "end": 46.5, "bg": "paper"},
+    {"id": "lineage", "start": 46.5, "end": 53, "bg": "paper"},
+    {"id": "disciple", "start": 53, "end": 60, "bg": "paper"},
+    {"id": "ch2", "start": 60, "end": 63.5, "bg": "night"},
+    {"id": "writer", "start": 63.5, "end": 75, "bg": "paper"},
+    {"id": "verse", "start": 75, "end": 87, "bg": "paper"},
+    {"id": "memory", "start": 87, "end": 99, "bg": "paper"},
+    {"id": "sciences", "start": 99, "end": 110, "bg": "paper"},
+    {"id": "manuscript", "start": 110, "end": 120, "bg": "paper"},
+    {"id": "ch3", "start": 120, "end": 123.5, "bg": "night"},
+    {"id": "measure", "start": 123.5, "end": 133, "bg": "paper"},
+    {"id": "name", "start": 133, "end": 140, "bg": "paper"},
+    {"id": "clients", "start": 140, "end": 149, "bg": "night"},
+    {"id": "pattern", "start": 149, "end": 159, "bg": "indigo"},
+    {"id": "sewing", "start": 159, "end": 173, "bg": "paper"},
+    {"id": "finale", "start": 173, "end": 180, "bg": "night"}
+  ],
+  "journey": {"legs": [[2.0, 5.0], [6.0, 8.6], [9.6, 12.2], [13.2, 16.4]]},
+  "meter": {"offset": 2.6, "unit": 0.2, "gap": 0.6, "repeat": 2, "pattern": [2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2]},
+  "sewing": {"steps": [1.0, 3.4, 5.8, 8.2, 10.6, 13.0]}
+}
