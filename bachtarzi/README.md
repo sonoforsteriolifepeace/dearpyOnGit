@@ -60,10 +60,11 @@ Les polices (Cormorant Garamond, Inter, Amiri, Reem Kufi) sont dans `src/fonts/`
 npm install
 npm run studio                         # aperçu interactif Remotion
 node stills.mjs 12 33 100 150          # images fixes → stills/ (SHEET=1 pour une planche-contact)
-node render.mjs                        # → out/bachtarzi_muet.mp4 (≈ 10 min sur 4 cœurs)
+node render.mjs                        # → out/bachtarzi_muet.mp4 (≈ 8 min sur 4 cœurs, ≈ 72 Mo en CRF 18)
+ffmpeg -i out/bachtarzi_muet.mp4 -c:v libx264 -preset slow -crf 23 -an bachtarzi_muet.mp4   # version allégée (≈ 32 Mo), celle du dépôt
 
 python3 audio.py out/musique.wav       # lit musical (numpy seul)
-ffmpeg -i out/bachtarzi_muet.mp4 -i out/musique.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k bachtarzi.mp4
+ffmpeg -i bachtarzi_muet.mp4 -i out/musique.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k bachtarzi.mp4
 node srt.ts out/bachtarzi_fr.srt
 ```
 
