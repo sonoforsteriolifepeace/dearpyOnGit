@@ -1,0 +1,28 @@
+{
+  "fps": 30,
+  "overlap": 0.5,
+  "parts": [
+    {"id": "I", "title": "Le maître et son premier élève"},
+    {"id": "II", "title": "De l'élève à l'auteur"},
+    {"id": "III", "title": "Le terdji : couture et poésie"}
+  ],
+  "scenes": [
+    {"id": "intro", "dur": 9},
+    {"id": "p1title", "dur": 4, "part": 0},
+    {"id": "map", "dur": 26, "part": 0},
+    {"id": "tombs", "dur": 11, "part": 0},
+    {"id": "lineage", "dur": 10, "part": 0},
+    {"id": "student", "dur": 11, "part": 0},
+    {"id": "p2title", "dur": 4, "part": 1},
+    {"id": "author", "dur": 13, "part": 1},
+    {"id": "verse", "dur": 15, "part": 1},
+    {"id": "memory", "dur": 16, "part": 1},
+    {"id": "preserve", "dur": 9, "part": 1},
+    {"id": "p3title", "dur": 4, "part": 2},
+    {"id": "terdji", "dur": 13, "part": 2},
+    {"id": "clients", "dur": 13, "part": 2},
+    {"id": "measure", "dur": 14, "part": 2},
+    {"id": "couture", "dur": 22, "part": 2},
+    {"id": "outro", "dur": 15}
+  ]
+}
