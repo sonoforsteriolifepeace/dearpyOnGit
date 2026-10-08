@@ -12,7 +12,7 @@ posée dessous.
 | II · Écrire pour transmettre (1:00–2:00) | l’élève devient auteur, les leçons réécrites en vers, pourquoi la poésie (le mètre), les sciences apprises en vers, la Mandhouma |
 | III · Le tailleur et la mesure (2:00–3:00) | la mesure, « Bach-Terzi », ses clients (khodjas, aghas, bachaghas, deys), le patron, le poème cousu comme un habit, final |
 
-Rendu : `out/bachtarzi.mp4` (non versionné ; une copie est dans `bachtarzi.mp4`).
+Rendu : `bachtarzi.mp4` (recompressé en CRF 25 pour rester sous la limite de taille de GitHub ; `npm run render` produit `out/bachtarzi.mp4` en pleine qualité).
 
 ## Structure
 
